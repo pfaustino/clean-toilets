@@ -2,6 +2,8 @@
 
 Find toilets in **London** with cleanliness ratings and paid/free info. Search is public. Sign in to rate a toilet or add one the map is missing.
 
+**Live:** [https://clean-toilets.vercel.app](https://clean-toilets.vercel.app)
+
 ## Run locally
 
 ```bash
@@ -18,8 +20,11 @@ Open [http://localhost:3000](http://localhost:3000). Without Supabase keys the a
 2. Paste **Project URL** and **anon public** key into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 3. In the SQL editor, run [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql).
 4. Authentication → URL configuration:
-   - Site URL: `http://localhost:3000`
-   - Redirect URLs: `http://localhost:3000/auth/callback`
+   - Site URL: `https://clean-toilets.vercel.app` (or `http://localhost:3000` while developing)
+   - Redirect URLs:
+     - `https://clean-toilets.vercel.app/auth/callback`
+     - `http://localhost:3000/auth/callback`
+     - `http://localhost:3001/auth/callback`
 5. Restart `npm run dev`. Sign-in uses an email magic link.
 
 ## Import London toilets from OpenStreetMap
