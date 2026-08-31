@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
+import { getSiteUrl } from "@/lib/site";
 
 export function LoginForm() {
   const searchParams = useSearchParams();
@@ -24,7 +25,7 @@ export function LoginForm() {
       const { error } = await supabase.auth.signInWithOtp({
         email: email.trim(),
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=${encodeURIComponent(safeNext)}`,
+          emailRedirectTo: `${getSiteUrl()}/auth/callback?next=${encodeURIComponent(safeNext)}`,
         },
       });
       if (error) {

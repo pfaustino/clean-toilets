@@ -20,8 +20,8 @@ Open [http://localhost:3000](http://localhost:3000). Without Supabase keys the a
 2. Paste **Project URL** and **anon public** key into `.env.local` as `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
 3. In the SQL editor, run [`supabase/migrations/001_init.sql`](supabase/migrations/001_init.sql).
 4. Authentication → URL configuration:
-   - Site URL: `https://clean-toilets.vercel.app` (or `http://localhost:3000` while developing)
-   - Redirect URLs:
+   - Site URL: `https://clean-toilets.vercel.app`
+   - Redirect URLs (add all of these):
      - `https://clean-toilets.vercel.app/auth/callback`
      - `http://localhost:3000/auth/callback`
      - `http://localhost:3001/auth/callback`
