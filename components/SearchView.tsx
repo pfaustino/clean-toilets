@@ -44,11 +44,11 @@ export function SearchView({ toilets }: Props) {
         onFeeChange={setFee}
         onMinRatingChange={setMinRating}
       />
-      <div className="flex min-h-0 flex-1 flex-col lg:grid lg:grid-cols-2">
-        <div className="h-[min(50vh,420px)] border-b border-teal-800/10 lg:h-auto lg:min-h-[520px] lg:border-b-0 lg:border-r">
+      <div className="grid min-h-0 flex-1 grid-cols-1 lg:grid-cols-2 lg:overflow-hidden">
+        <div className="h-[min(50vh,420px)] border-b border-teal-800/10 lg:h-full lg:min-h-0 lg:border-b-0 lg:border-r">
           <ToiletMap toilets={filtered} />
         </div>
-        <div className="min-h-0 overflow-y-auto bg-white">
+        <div className="min-h-0 overflow-y-auto bg-white lg:h-full">
           <ToiletList toilets={filtered} />
         </div>
       </div>

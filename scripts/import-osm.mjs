@@ -89,23 +89,44 @@ const overpassQuery = `[out:json][timeout:90];
 );
 out center tags;`;
 
-const overpassUrl =
-  process.env.OVERPASS_URL || "https://overpass-api.de/api/interpreter";
+const overpassUrls = process.env.OVERPASS_URL
+  ? [process.env.OVERPASS_URL]
+  : [
+      "https://overpass-api.de/api/interpreter",
+      "https://overpass.kumi.systems/api/interpreter",
+    ];
 
 console.log(`Fetching OSM toilets for ${CITY.name}…`);
 
-const overpassRes = await fetch(overpassUrl, {
-  method: "POST",
-  headers: { "Content-Type": "application/x-www-form-urlencoded" },
-  body: new URLSearchParams({ data: overpassQuery }),
-});
+const overpassHeaders = {
+  "Content-Type": "application/x-www-form-urlencoded",
+  Accept: "application/json",
+  "User-Agent":
+    "LurkersCleanToilets/0.1 (https://github.com/pfaustino/clean-toilets)",
+};
+const overpassBody = new URLSearchParams({ data: overpassQuery });
 
-if (!overpassRes.ok) {
-  console.error(`Overpass error ${overpassRes.status}: ${await overpassRes.text()}`);
-  process.exit(1);
+let payload = null;
+for (const overpassUrl of overpassUrls) {
+  const overpassRes = await fetch(overpassUrl, {
+    method: "POST",
+    headers: overpassHeaders,
+    body: overpassBody,
+  });
+  if (!overpassRes.ok) {
+    const errText = await overpassRes.text();
+    console.warn(`Overpass ${overpassRes.status} from ${overpassUrl}`);
+    console.warn(errText.slice(0, 200));
+    continue;
+  }
+  payload = await overpassRes.json();
+  break;
 }
 
-const payload = await overpassRes.json();
+if (!payload) {
+  console.error("All Overpass endpoints failed.");
+  process.exit(1);
+}
 const elements = Array.isArray(payload.elements) ? payload.elements : [];
 
 const rows = [];

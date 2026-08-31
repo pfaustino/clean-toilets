@@ -23,8 +23,17 @@ body {
 }
 
 .leaflet-container {
+  width: 100%;
+  height: 100%;
   font-family: inherit;
   z-index: 0;
+  background: #e2e8f0;
+}
+
+/* Tailwind preflight sets max-width: 100% on images, which breaks OSM tiles. */
+.leaflet-container img.leaflet-tile,
+.leaflet-container img {
+  max-width: none !important;
 }
 
 .toilet-pin {

@@ -8,7 +8,7 @@ export async function Header() {
   const configured = isSupabaseConfigured();
 
   return (
-    <header className="sticky top-0 z-20 border-b border-teal-800/10 bg-white/90 backdrop-blur">
+    <header className="sticky top-0 z-20 shrink-0 border-b border-teal-800/10 bg-white/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <Link href="/" className="min-w-0">
           <p className="text-lg font-semibold tracking-tight text-teal-900">

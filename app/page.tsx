@@ -10,7 +10,7 @@ export default async function HomePage() {
   return (
     <>
       <Header />
-      <main className="mx-auto flex w-full max-w-6xl flex-1 flex-col">
+      <main className="mx-auto flex min-h-0 w-full max-w-6xl flex-1 flex-col lg:overflow-hidden">
         <SearchView toilets={toilets} />
       </main>
     </>
