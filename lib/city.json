@@ -1,0 +1,11 @@
+{
+  "name": "London",
+  "center": { "lat": 51.5074, "lng": -0.1278 },
+  "bbox": {
+    "south": 51.2868,
+    "west": -0.5103,
+    "north": 51.6919,
+    "east": 0.334
+  },
+  "defaultZoom": 12
+}
